@@ -1,0 +1,9 @@
+name: 'SuperPointNet'
+descriptor_dim: &DIM 256
+parameters:
+  max_keypoints: 1024
+  descriptor_dim: *DIM
+  nms_kernel: 9
+  remove_borders_size: 4
+  keypoint_threshold: 0.005
+  weights: '/home/ostap/projects/SuperGluePretrainedNetwork/models/weights/superpoint_v1.pth'

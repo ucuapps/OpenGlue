@@ -1,0 +1,6 @@
+name: 'GFTTAffNetHardNet'
+descriptor_dim: 128
+parameters:
+  descriptor_dim: 128
+  max_keypoints: 1024
+  nms_diameter: 9

@@ -1,0 +1,5 @@
+name: 'OPENCVDoGAffNetHardNet'
+descriptor_dim: 128
+parameters:
+  max_keypoints: 2048
+  nms_diameter: 9

@@ -1,0 +1,54 @@
+gpus: [ 0, 1, 2 ]
+data:
+  root_path: '/datasets/extra_space2/ostap/distractors/datasets/revisitop1m/jpg'
+  batch_size_per_gpu: 4
+  dataloader_workers_per_gpu: 4
+  resize_shape: [ 1472, 1232 ] # 960 + 2*offset, 720 + 2*offset
+  warp_offset: 256
+
+logging:
+  root_path: 'logs'
+  name: 'pretrain_superpoint_magicleap'
+  train_logs_steps: 50
+
+train:
+  epochs: 100
+  steps_per_epoch: 10000
+  grad_clip: 10.0
+  precision: 32
+  gt_positive_threshold: 3
+  gt_negative_threshold: 3
+  margin: null
+  nll_weight: 1.0
+  metric_weight: 0.0
+  lr: 1.0e-4
+  scheduler_gamma: 0.999994
+  augmentations:
+    name: 'none'
+  evaluation: False
+
+features:
+  name: 'SuperPointNet'
+  parameters:
+    max_keypoints: 1024
+    descriptor_dim: 256
+    nms_kernel: 9
+    remove_borders_size: 4
+    keypoint_threshold: 0.005
+    weights: '/home/ostap/projects/SuperGluePretrainedNetwork/models/weights/superpoint_v1.pth'
+
+superglue:
+  laf_to_sideinfo_method: 'none'
+  positional_encoding:
+    side_info_size: 1
+    hidden_layers_sizes: [ 32, 64, 128 ]
+  attention_gnn:
+    num_stages: 9
+    num_heads: 4
+    attention: 'softmax'
+    use_offset: False
+  dustbin_score_init: 1.0
+  otp:
+    num_iters: 20
+    reg: 1.0
+  residual: True

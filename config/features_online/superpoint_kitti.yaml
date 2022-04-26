@@ -1,0 +1,9 @@
+name: 'SuperPointNetBn'
+descriptor_dim: &DIM 256
+parameters:
+  max_keypoints: 1024
+  descriptor_dim: *DIM
+  nms_kernel: 9
+  remove_borders_size: 4
+  keypoint_threshold: 0.005
+  weights: '/home/ostap/projects/pytorch-superpoint/logs/superpoint_kitti_heat2_0/checkpoints/superPointNet_50000_checkpoint.pth.tar'

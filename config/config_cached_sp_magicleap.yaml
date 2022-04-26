@@ -1,0 +1,64 @@
+gpus: [ 0, 1, 2 ]
+data:
+  root_path: '/datasets/extra_space2/ostap/MegaDepth'
+  train_list_path: '/home/ostap/projects/superglue-lightning/assets/megadepth_train_scenes.txt'
+  val_list_path: '/home/ostap/projects/superglue-lightning/assets/megadepth_validation_scenes.txt'
+  test_list_path: '/home/ostap/projects/superglue-lightning/assets/megadepth_validation_scenes.txt'
+  features_dir: 'SuperPointNet_960_720'
+  max_keypoints: 1024
+
+  batch_size_per_gpu: 4
+  dataloader_workers_per_gpu: 4
+  target_size: [ 960, 720 ]
+  val_max_pairs_per_scene: 50
+  train_pairs_overlap: [ 0.15, 0.7 ]
+
+logging:
+  root_path: 'logs'
+  name: 'superpoint_magicleap'
+  train_logs_steps: 50
+
+train:
+  epochs: 100
+  steps_per_epoch: 10000
+  grad_clip: 10.0
+  precision: 32
+  gt_positive_threshold: 2
+  gt_negative_threshold: 7
+  margin: null
+  nll_weight: 1.0
+  metric_weight: 0.0
+  lr: 1.0e-4
+  scheduler_gamma: 0.999994
+  augmentations:
+    name: 'none'
+  use_cached_features: True
+
+evaluation:
+  epipolar_dist_threshold: 5.0e-4
+  camera_auc_thresholds: [ 5.0, 10.0, 20.0 ]
+  camera_auc_ransac_inliers_threshold: 1.0
+
+inference:
+  match_threshold: 0.2
+
+superglue:
+  descriptor_dim: &DESCRIPTOR_DIM 256
+  laf_to_sideinfo_method: 'none'
+  positional_encoding:
+    hidden_layers_sizes: [ 32, 64, 128 ]
+    output_size: *DESCRIPTOR_DIM
+  attention_gnn:
+    num_stages: 9
+    num_heads: 4
+    embed_dim: *DESCRIPTOR_DIM
+    attention: 'softmax'
+    use_offset: False
+  dustbin_score_init: 1.0
+  otp:
+    num_iters: 20
+    reg: 1.0
+  residual: True
+  weights: '/home/ostap/projects/superglue-lightning/logs/pretrain_superpoint_magicleap/Pretraining_SuperPointNet__attn_softmax__laf_none__2022-03-07-20-34-43/superglue_sp_magicleap.pth'
+
+checkpoint: '/home/ostap/projects/superglue-lightning/logs/superpoint_magicleap/SuperPointNet_960_720_cache__attn_softmax__laf_none__2022-03-10-22-44-38/superglue-step=569999.ckpt'

@@ -1,0 +1,7 @@
+*.pyc
+*.DS_Store
+*.swp
+.idea/
+venv/
+scratch/
+scratch*.py

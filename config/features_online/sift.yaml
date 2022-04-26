@@ -1,0 +1,6 @@
+name: 'SIFT'
+descriptor_dim: 128
+parameters:
+  max_keypoints: 1024
+  nms_diameter: 9
+  rootsift: True

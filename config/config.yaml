@@ -1,0 +1,55 @@
+gpus: [ 0, 1, 2 ]
+data:
+  root_path: '/datasets/extra_space2/ostap/MegaDepth'
+  train_list_path: '/home/ostap/projects/superglue-lightning/assets/megadepth_train_2.0.txt'
+  val_list_path: '/home/ostap/projects/superglue-lightning/assets/megadepth_valid_2.0.txt'
+  test_list_path: '/home/ostap/projects/superglue-lightning/assets/megadepth_valid_2.0.txt'
+
+  batch_size_per_gpu: 2
+  dataloader_workers_per_gpu: 4
+  target_size: [ 960, 720 ]
+  val_max_pairs_per_scene: 50
+  train_pairs_overlap: [0.15, 0.7]
+
+logging:
+  root_path: 'logs'
+  name: 'default'
+  train_logs_steps: 50
+
+train:
+  epochs: 100
+  steps_per_epoch: 10000
+  grad_clip: 10.0
+  precision: 32
+  gt_positive_threshold: 2
+  gt_negative_threshold: 7
+  margin: null
+  nll_weight: 1.0
+  metric_weight: 0.0
+  lr: 1.0e-4
+  scheduler_gamma: 0.999994
+  augmentations:
+    name: 'none'
+
+evaluation:
+  epipolar_dist_threshold: 5.0e-4
+  camera_auc_thresholds: [5.0, 10.0, 20.0]
+  camera_auc_ransac_inliers_threshold: 1.0
+
+inference:
+  match_threshold: 0.2
+
+superglue:
+  laf_to_sideinfo_method: 'none'
+  positional_encoding:
+    hidden_layers_sizes: [32, 64, 128]
+  attention_gnn:
+    num_stages: 9
+    num_heads: 4
+    attention: 'softmax'
+    use_offset: False
+  dustbin_score_init: 1.0
+  otp:
+    num_iters: 20
+    reg: 1.0
+  residual: True
