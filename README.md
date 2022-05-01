@@ -16,7 +16,7 @@ our paper - [OpenGlue: Open Source Graph Neural Net Based Pipeline for Image Mat
 </p>
 
 SuperGlue - a method for learning feature matching using graph neural network, proposed by a team (Paul-Edouard Sarlin, Daniel DeTone, Tomasz Malisiewicz, Andrew Rabinovich) from Magic Leap.
-Official full paper - [SuperGlue: Learning Feature Matching with Graph Neural Networks](https://arxiv.org/abs/1911.11763).
+Official full paper - [SuperGlue: Learning Feature Matching with Graph Neural Networks](https://arxiv.org/abs/1712.07629).
 
 We present OpenGlue: a free open-source framework for image matching, that uses a Graph Neural Network-based matcher inspired by SuperGlue. We show that including additional geometrical information, such as local feature scale, orientation, and affine geometry, when available (e.g. for SIFT features), significantly improves the performance of the OpenGlue matcher. We study the influence of the various attention mechanisms on accuracy and speed. We also present a simple architectural improvement by combining local descriptors with context-aware descriptors. 
 
