@@ -75,7 +75,7 @@ class SuperGlue(nn.Module):
     def normalize_keypoints(kpts, image_shape):
         """Normalize keypoints coordinates to the range [-1., 1.]"""
         height, width = image_shape[-2], image_shape[-1]
-        return 2 * kpts / torch.tensor([height - 1, width - 1], device=kpts.device) - 1.
+        return 2 * kpts / torch.tensor([width - 1, height - 1], device=kpts.device) - 1.
 
     @staticmethod
     def calculate_matching_score(desc0, desc1):
