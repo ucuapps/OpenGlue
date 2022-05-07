@@ -150,7 +150,8 @@ The parameter responsible for configuring cached features location is `features_
 The logging results will be visible inside a log folder + experiment name, specified in `config.yaml`. 
 
 ### Pretrained models
-Will be added soon, please check back later.
+Our checkpoints are available in this [folder](https://drive.google.com/drive/folders/1N-x_-KzSFgCVO58YeCA3B6AHC2n8JK9J?usp=sharing).
+Some other weights might be added in the future. 
 
 ## Testing
 Example of how to run inference and receive visualizations is shown in [`Image-matching.ipynb`](examples/Image-matching.ipynb).
